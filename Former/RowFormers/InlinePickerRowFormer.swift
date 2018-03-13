@@ -74,9 +74,11 @@ open class InlinePickerRowFormer<T: UITableViewCell, S>
             displayLabel?.text = ""
         } else {
             
-//          Sets selected row to 0 to avoid 'index out of range' error. This is in case the updated picker items array count
-//          is less than the prior array count.
-            selectedRow = 0
+            // Sets selected row to 0 to avoid 'index out of range' error. This is in case the updated picker items array count
+            //  is less than the prior array count.
+            if selectedRow >= pickerItems.count {
+                selectedRow = 0
+            }
             
             displayLabel?.text = pickerItems[selectedRow].title
             _ = pickerItems[selectedRow].displayTitle.map { displayLabel?.attributedText = $0 }
